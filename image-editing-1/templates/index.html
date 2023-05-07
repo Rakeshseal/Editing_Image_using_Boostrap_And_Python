@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Image Editing-0.1</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+
+    <!--font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Pacifico&family=Poppins:wght@300;400&family=Rammetto+One&family=Righteous&family=Ubuntu:wght@500&display=swap" rel="stylesheet">
+    
+
+    <style>
+       .navbar-brand{
+        font-family: 'Pacifico', cursive;
+       }
+    </style>
+
+    
+  </head>
+  <body>
+    <div class="container-fluid bg-warning">
+      <div class="container gx-0">
+        <nav class="navbar navbar-expand-lg bg-transparent">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="/">Editing Pics</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                
+                <li class="nav-item">
+                  <a class="nav-link" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#help">How to use</a>
+                </li>
+                
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Contact us
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="https://github.com/Rakeshseal" target="_blank">Github</a></li>
+                    <li><a class="dropdown-item" href="#">Email</a></li>
+                    
+                    <li>
+                      <a class="dropdown-item" href="https://rakesh-folio.netlify.app" target="_blank">Website</a>
+                    </li>
+                  </ul>
+                </li>
+                
+              </ul>
+              <div class="d-flex" role="search">
+                <button class="btn btn-outline-success mx-1" type="submit">
+                  Login
+                </button>
+                <button class="btn btn-outline-success mx-1" type="submit">
+                  Signup
+                </button>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    
+      {% for category, message in messages %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong> Success!</strong> {{ message | safe }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+    
+    {% endif %}
+    {% endwith %}
+
+    <div class="container my-4">
+      <h1 class="fs-2 text">Editing Pics - Edit Your Image online</h1>
+
+      <form action="/edit" method="post" enctype="multipart/form-data">
+        <!--choose files-->
+        <div class="mb-3">
+          <label for="formFile" class="form-label"
+            >Select an Image to edit</label>
+          <input class="form-control" name="file" type="file" id="formFile" />
+        </div>
+
+        <!--Select files-->
+        <div class="mb-3">
+          <div class="form-floating">
+            <select
+              name="operation"
+              class="form-select"
+              id="floatingSelect"
+              aria-label="Floating label select example">
+              <option selected>Choose an Operation</option>
+              <option value="cpng">Convert to PNG</option>
+              <option value="cgray">Convert to Grayscale</option>
+              <option value="cwebp">Convert to Webp</option>
+              <option value="cjpg">Convert to Jpg</option>
+            </select>
+            <label for="floatingSelect">Select an Editing Operation</label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success">submit</button>
+      </form>
+    </div>
+    
+    <!--About us-->
+    <div class="container-fluid   bg-warning">
+      <div class="container py-5">
+        <div id="about">
+          <h2 class="fs-2 text">About us</h2>
+          <p>Editing Pics is a image editing web project. This project will help to quickly convert images of different formats to JPG, PNG, Webp and 
+         Grayscale format. The web is made on Python, Html and Boostrap only. And the web page is designed on Figma software. And this 
+         project is still ongoing with efforts to improve it so that it is very beneficial for the users.</p>
+        </div>
+      </div>
+    </div>
+
+    <!--Help-->
+    <div class="container-fluid   bg-secondary">
+      <div class="container py-3">
+        <div id="help">
+          <h2 class="fs-2 text">Help</h2>
+          <p>First click the Choose File button then select your image (only one). Next Choose an Operation like Jpg, Png, Webp, Grayscale then click 
+           the Submit button. Next you receive a notification and click "here".</p>
+        </div>
+      </div>
+    </div>
+
+    <!--Footer-->
+    <div class="container-fluid   bg-light">
+      <div class="container  py-1 text-center ">
+         <p class="fs-6 text">copy 2023 rakesh - Developed By, Rakesh Seal</p>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
